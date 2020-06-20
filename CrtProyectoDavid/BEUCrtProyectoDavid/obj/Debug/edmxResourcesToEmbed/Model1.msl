@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="emmcomerseEntities">
+    <EntitySetMapping Name="CabezaFactura">
+      <EntityTypeMapping TypeName="Model.CabezaFactura">
+        <MappingFragment StoreEntitySet="CabezaFactura">
+          <ScalarProperty Name="cbf_id" ColumnName="cbf_id" />
+          <ScalarProperty Name="cln_id" ColumnName="cln_id" />
+          <ScalarProperty Name="cbf_dateOfCreated" ColumnName="cbf_dateOfCreated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carrito">
+      <EntityTypeMapping TypeName="Model.Carrito">
+        <MappingFragment StoreEntitySet="Carrito">
+          <ScalarProperty Name="car_id" ColumnName="car_id" />
+          <ScalarProperty Name="cln_id" ColumnName="cln_id" />
+          <ScalarProperty Name="car_tipo" ColumnName="car_tipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categoria">
+      <EntityTypeMapping TypeName="Model.Categoria">
+        <MappingFragment StoreEntitySet="Categoria">
+          <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+          <ScalarProperty Name="cat_nom" ColumnName="cat_nom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cliente">
+      <EntityTypeMapping TypeName="Model.Cliente">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="cln_id" ColumnName="cln_id" />
+          <ScalarProperty Name="uso_id" ColumnName="uso_id" />
+          <ScalarProperty Name="cln_tipo" ColumnName="cln_tipo" />
+          <ScalarProperty Name="cln_dateOfCreated" ColumnName="cln_dateOfCreated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CuerpoFactura">
+      <EntityTypeMapping TypeName="Model.CuerpoFactura">
+        <MappingFragment StoreEntitySet="CuerpoFactura">
+          <ScalarProperty Name="crf_id" ColumnName="crf_id" />
+          <ScalarProperty Name="cbf_id" ColumnName="cbf_id" />
+          <ScalarProperty Name="car_id" ColumnName="car_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pago">
+      <EntityTypeMapping TypeName="Model.Pago">
+        <MappingFragment StoreEntitySet="Pago">
+          <ScalarProperty Name="pgo_id" ColumnName="pgo_id" />
+          <ScalarProperty Name="cln_id" ColumnName="cln_id" />
+          <ScalarProperty Name="pgo_nom" ColumnName="pgo_nom" />
+          <ScalarProperty Name="pgo_ntg" ColumnName="pgo_ntg" />
+          <ScalarProperty Name="pgo_fven" ColumnName="pgo_fven" />
+          <ScalarProperty Name="pgo_cseg" ColumnName="pgo_cseg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Producto">
+      <EntityTypeMapping TypeName="Model.Producto">
+        <MappingFragment StoreEntitySet="Producto">
+          <ScalarProperty Name="prd_id" ColumnName="prd_id" />
+          <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+          <ScalarProperty Name="prm_id" ColumnName="prm_id" />
+          <ScalarProperty Name="prd_nom" ColumnName="prd_nom" />
+          <ScalarProperty Name="prd_img" ColumnName="prd_img" />
+          <ScalarProperty Name="prd_tal" ColumnName="prd_tal" />
+          <ScalarProperty Name="prd_crt" ColumnName="prd_crt" />
+          <ScalarProperty Name="prd_cnt" ColumnName="prd_cnt" />
+          <ScalarProperty Name="prd_dateOfCreated" ColumnName="prd_dateOfCreated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductoEnCarrito">
+      <EntityTypeMapping TypeName="Model.ProductoEnCarrito">
+        <MappingFragment StoreEntitySet="ProductoEnCarrito">
+          <ScalarProperty Name="pcr_id" ColumnName="pcr_id" />
+          <ScalarProperty Name="car_id" ColumnName="car_id" />
+          <ScalarProperty Name="prd_id" ColumnName="prd_id" />
+          <ScalarProperty Name="pcr_est" ColumnName="pcr_est" />
+          <ScalarProperty Name="prd_cnt" ColumnName="prd_cnt" />
+          <ScalarProperty Name="pcr_dateOfCreated" ColumnName="pcr_dateOfCreated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Promocion">
+      <EntityTypeMapping TypeName="Model.Promocion">
+        <MappingFragment StoreEntitySet="Promocion">
+          <ScalarProperty Name="prm_id" ColumnName="prm_id" />
+          <ScalarProperty Name="prm_nom" ColumnName="prm_nom" />
+          <ScalarProperty Name="prm_tip" ColumnName="prm_tip" />
+          <ScalarProperty Name="prm_can" ColumnName="prm_can" />
+          <ScalarProperty Name="prm_por" ColumnName="prm_por" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="Model.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="uso_id" ColumnName="uso_id" />
+          <ScalarProperty Name="uso_usu" ColumnName="uso_usu" />
+          <ScalarProperty Name="uso_con" ColumnName="uso_con" />
+          <ScalarProperty Name="uso_rol" ColumnName="uso_rol" />
+          <ScalarProperty Name="uso_nom" ColumnName="uso_nom" />
+          <ScalarProperty Name="uso_cor" ColumnName="uso_cor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

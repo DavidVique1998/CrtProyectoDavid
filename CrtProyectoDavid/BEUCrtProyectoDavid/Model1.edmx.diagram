@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="41cf07a895e04af78eee5e3a8a0c030f" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.CabezaFactura" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Carrito" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Categoria" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Cliente" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CuerpoFactura" Width="1.5" PointX="7.5" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Pago" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Producto" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ProductoEnCarrito" Width="1.5" PointX="7.5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Promocion" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Usuario" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK__CabezaFac__cln_i__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__CuerpoFac__cbf_i__74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Carrito__cln_id__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__CuerpoFac__car_i__75A278F5" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__ProductoE__car_i__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Producto__cat_id__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Cliente__uso_id__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Pago__cln_id__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Producto__prm_id__68487DD7" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__ProductoE__prd_i__6E01572D" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

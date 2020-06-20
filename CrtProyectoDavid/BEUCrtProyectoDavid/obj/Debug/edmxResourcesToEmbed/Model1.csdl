@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CabezaFactura">
+    <Key>
+      <PropertyRef Name="cbf_id" />
+    </Key>
+    <Property Name="cbf_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cln_id" Type="Int32" Nullable="false" />
+    <Property Name="cbf_dateOfCreated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FK__CabezaFac__cln_i__71D1E811" FromRole="CabezaFactura" ToRole="Cliente" />
+    <NavigationProperty Name="CuerpoFactura" Relationship="Self.FK__CuerpoFac__cbf_i__74AE54BC" FromRole="CabezaFactura" ToRole="CuerpoFactura" />
+  </EntityType>
+  <EntityType Name="Carrito">
+    <Key>
+      <PropertyRef Name="car_id" />
+    </Key>
+    <Property Name="car_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cln_id" Type="Int32" Nullable="false" />
+    <Property Name="car_tipo" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FK__Carrito__cln_id__60A75C0F" FromRole="Carrito" ToRole="Cliente" />
+    <NavigationProperty Name="CuerpoFactura" Relationship="Self.FK__CuerpoFac__car_i__75A278F5" FromRole="Carrito" ToRole="CuerpoFactura" />
+    <NavigationProperty Name="ProductoEnCarrito" Relationship="Self.FK__ProductoE__car_i__6D0D32F4" FromRole="Carrito" ToRole="ProductoEnCarrito" />
+  </EntityType>
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="cat_id" />
+    </Key>
+    <Property Name="cat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cat_nom" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__cat_id__693CA210" FromRole="Categoria" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="cln_id" />
+    </Key>
+    <Property Name="cln_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="uso_id" Type="Int32" Nullable="false" />
+    <Property Name="cln_tipo" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="cln_dateOfCreated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="CabezaFactura" Relationship="Self.FK__CabezaFac__cln_i__71D1E811" FromRole="Cliente" ToRole="CabezaFactura" />
+    <NavigationProperty Name="Carrito" Relationship="Self.FK__Carrito__cln_id__60A75C0F" FromRole="Cliente" ToRole="Carrito" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK__Cliente__uso_id__5AEE82B9" FromRole="Cliente" ToRole="Usuario" />
+    <NavigationProperty Name="Pago" Relationship="Self.FK__Pago__cln_id__5DCAEF64" FromRole="Cliente" ToRole="Pago" />
+  </EntityType>
+  <EntityType Name="CuerpoFactura">
+    <Key>
+      <PropertyRef Name="crf_id" />
+    </Key>
+    <Property Name="crf_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cbf_id" Type="Int32" Nullable="false" />
+    <Property Name="car_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CabezaFactura" Relationship="Self.FK__CuerpoFac__cbf_i__74AE54BC" FromRole="CuerpoFactura" ToRole="CabezaFactura" />
+    <NavigationProperty Name="Carrito" Relationship="Self.FK__CuerpoFac__car_i__75A278F5" FromRole="CuerpoFactura" ToRole="Carrito" />
+  </EntityType>
+  <EntityType Name="Pago">
+    <Key>
+      <PropertyRef Name="pgo_id" />
+    </Key>
+    <Property Name="pgo_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cln_id" Type="Int32" Nullable="false" />
+    <Property Name="pgo_nom" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="pgo_ntg" Type="String" MaxLength="16" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="pgo_fven" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="pgo_cseg" Type="Int32" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FK__Pago__cln_id__5DCAEF64" FromRole="Pago" ToRole="Cliente" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="prd_id" />
+    </Key>
+    <Property Name="prd_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cat_id" Type="Int32" Nullable="false" />
+    <Property Name="prm_id" Type="Int32" Nullable="false" />
+    <Property Name="prd_nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prd_img" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="prd_tal" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="prd_crt" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="prd_cnt" Type="Int32" />
+    <Property Name="prd_dateOfCreated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Categoria" Relationship="Self.FK__Producto__cat_id__693CA210" FromRole="Producto" ToRole="Categoria" />
+    <NavigationProperty Name="Promocion" Relationship="Self.FK__Producto__prm_id__68487DD7" FromRole="Producto" ToRole="Promocion" />
+    <NavigationProperty Name="ProductoEnCarrito" Relationship="Self.FK__ProductoE__prd_i__6E01572D" FromRole="Producto" ToRole="ProductoEnCarrito" />
+  </EntityType>
+  <EntityType Name="ProductoEnCarrito">
+    <Key>
+      <PropertyRef Name="pcr_id" />
+    </Key>
+    <Property Name="pcr_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="car_id" Type="Int32" Nullable="false" />
+    <Property Name="prd_id" Type="Int32" Nullable="false" />
+    <Property Name="pcr_est" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prd_cnt" Type="Int32" />
+    <Property Name="pcr_dateOfCreated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Carrito" Relationship="Self.FK__ProductoE__car_i__6D0D32F4" FromRole="ProductoEnCarrito" ToRole="Carrito" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK__ProductoE__prd_i__6E01572D" FromRole="ProductoEnCarrito" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="Promocion">
+    <Key>
+      <PropertyRef Name="prm_id" />
+    </Key>
+    <Property Name="prm_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="prm_nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prm_tip" Type="Boolean" Nullable="false" />
+    <Property Name="prm_can" Type="Int32" Nullable="false" />
+    <Property Name="prm_por" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__prm_id__68487DD7" FromRole="Promocion" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="uso_id" />
+    </Key>
+    <Property Name="uso_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="uso_usu" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="uso_con" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="uso_rol" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="uso_nom" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="uso_cor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FK__Cliente__uso_id__5AEE82B9" FromRole="Usuario" ToRole="Cliente" />
+  </EntityType>
+  <Association Name="FK__CabezaFac__cln_i__71D1E811">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CabezaFactura" Type="Self.CabezaFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="cln_id" />
+      </Principal>
+      <Dependent Role="CabezaFactura">
+        <PropertyRef Name="cln_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CuerpoFac__cbf_i__74AE54BC">
+    <End Role="CabezaFactura" Type="Self.CabezaFactura" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CuerpoFactura" Type="Self.CuerpoFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CabezaFactura">
+        <PropertyRef Name="cbf_id" />
+      </Principal>
+      <Dependent Role="CuerpoFactura">
+        <PropertyRef Name="cbf_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Carrito__cln_id__60A75C0F">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Carrito" Type="Self.Carrito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="cln_id" />
+      </Principal>
+      <Dependent Role="Carrito">
+        <PropertyRef Name="cln_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CuerpoFac__car_i__75A278F5">
+    <End Role="Carrito" Type="Self.Carrito" Multiplicity="1" />
+    <End Role="CuerpoFactura" Type="Self.CuerpoFactura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Carrito">
+        <PropertyRef Name="car_id" />
+      </Principal>
+      <Dependent Role="CuerpoFactura">
+        <PropertyRef Name="car_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProductoE__car_i__6D0D32F4">
+    <End Role="Carrito" Type="Self.Carrito" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProductoEnCarrito" Type="Self.ProductoEnCarrito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Carrito">
+        <PropertyRef Name="car_id" />
+      </Principal>
+      <Dependent Role="ProductoEnCarrito">
+        <PropertyRef Name="car_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Producto__cat_id__693CA210">
+    <End Role="Categoria" Type="Self.Categoria" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="cat_id" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="cat_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cliente__uso_id__5AEE82B9">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="uso_id" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="uso_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pago__cln_id__5DCAEF64">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="cln_id" />
+      </Principal>
+      <Dependent Role="Pago">
+        <PropertyRef Name="cln_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Producto__prm_id__68487DD7">
+    <End Role="Promocion" Type="Self.Promocion" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Promocion">
+        <PropertyRef Name="prm_id" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="prm_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProductoE__prd_i__6E01572D">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProductoEnCarrito" Type="Self.ProductoEnCarrito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="prd_id" />
+      </Principal>
+      <Dependent Role="ProductoEnCarrito">
+        <PropertyRef Name="prd_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="emmcomerseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CabezaFactura" EntityType="Self.CabezaFactura" />
+    <EntitySet Name="Carrito" EntityType="Self.Carrito" />
+    <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+    <EntitySet Name="CuerpoFactura" EntityType="Self.CuerpoFactura" />
+    <EntitySet Name="Pago" EntityType="Self.Pago" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" />
+    <EntitySet Name="ProductoEnCarrito" EntityType="Self.ProductoEnCarrito" />
+    <EntitySet Name="Promocion" EntityType="Self.Promocion" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <AssociationSet Name="FK__CabezaFac__cln_i__71D1E811" Association="Self.FK__CabezaFac__cln_i__71D1E811">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="CabezaFactura" EntitySet="CabezaFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CuerpoFac__cbf_i__74AE54BC" Association="Self.FK__CuerpoFac__cbf_i__74AE54BC">
+      <End Role="CabezaFactura" EntitySet="CabezaFactura" />
+      <End Role="CuerpoFactura" EntitySet="CuerpoFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Carrito__cln_id__60A75C0F" Association="Self.FK__Carrito__cln_id__60A75C0F">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Carrito" EntitySet="Carrito" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CuerpoFac__car_i__75A278F5" Association="Self.FK__CuerpoFac__car_i__75A278F5">
+      <End Role="Carrito" EntitySet="Carrito" />
+      <End Role="CuerpoFactura" EntitySet="CuerpoFactura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProductoE__car_i__6D0D32F4" Association="Self.FK__ProductoE__car_i__6D0D32F4">
+      <End Role="Carrito" EntitySet="Carrito" />
+      <End Role="ProductoEnCarrito" EntitySet="ProductoEnCarrito" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Producto__cat_id__693CA210" Association="Self.FK__Producto__cat_id__693CA210">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cliente__uso_id__5AEE82B9" Association="Self.FK__Cliente__uso_id__5AEE82B9">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Cliente" EntitySet="Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pago__cln_id__5DCAEF64" Association="Self.FK__Pago__cln_id__5DCAEF64">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Pago" EntitySet="Pago" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Producto__prm_id__68487DD7" Association="Self.FK__Producto__prm_id__68487DD7">
+      <End Role="Promocion" EntitySet="Promocion" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProductoE__prd_i__6E01572D" Association="Self.FK__ProductoE__prd_i__6E01572D">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="ProductoEnCarrito" EntitySet="ProductoEnCarrito" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
