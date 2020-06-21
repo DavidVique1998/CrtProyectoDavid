@@ -1,0 +1,50 @@
+﻿@model BEUCrtProyectoDavid.Usuario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.uso_usu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uso_usu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uso_con)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uso_con)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uso_nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uso_nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uso_cor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uso_cor)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.uso_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

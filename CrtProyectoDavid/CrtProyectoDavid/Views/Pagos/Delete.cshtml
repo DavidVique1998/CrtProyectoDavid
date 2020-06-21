@@ -1,0 +1,64 @@
+﻿@model BEUCrtProyectoDavid.Pago
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Pago</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pgo_nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pgo_nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pgo_ntg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pgo_ntg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pgo_fven)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pgo_fven)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pgo_cseg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pgo_cseg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.cln_tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.cln_tipo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

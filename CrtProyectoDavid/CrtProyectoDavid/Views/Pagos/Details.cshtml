@@ -1,0 +1,58 @@
+﻿@model BEUCrtProyectoDavid.Pago
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Pago</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pgo_nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pgo_nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pgo_ntg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pgo_ntg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pgo_fven)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pgo_fven)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pgo_cseg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pgo_cseg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.cln_tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.cln_tipo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.pgo_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

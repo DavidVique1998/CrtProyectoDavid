@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BEUCrtProyectoDavid.Promocion>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.prm_nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prm_tip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prm_can)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prm_por)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.prm_nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prm_tip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prm_can)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prm_por)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.prm_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.prm_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.prm_id })
+        </td>
+    </tr>
+}
+
+</table>

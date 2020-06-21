@@ -94,6 +94,16 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queris\CabezaFacturaBLL.cs" />
+    <Compile Include="Queris\CarritoBLL.cs" />
+    <Compile Include="Queris\CategoriaBLL.cs" />
+    <Compile Include="Queris\ClienteBLL.cs" />
+    <Compile Include="Queris\CuerpoFacturaBLL.cs" />
+    <Compile Include="Queris\PagoBLL.cs" />
+    <Compile Include="Queris\ProductoBLL.cs" />
+    <Compile Include="Queris\ProductoEnCarritoBLL.cs" />
+    <Compile Include="Queris\PromocionBLL.cs" />
+    <Compile Include="Queris\UsuarioBLL.cs" />
     <Compile Include="Usuario.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

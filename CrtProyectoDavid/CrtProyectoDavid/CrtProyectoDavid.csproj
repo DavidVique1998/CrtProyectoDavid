@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -120,7 +126,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CabezaFacturasController.cs" />
+    <Compile Include="Controllers\CarritosController.cs" />
+    <Compile Include="Controllers\CategoriasController.cs" />
+    <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\CuerpoFacturasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PagosController.cs" />
+    <Compile Include="Controllers\ProductoEnCarritosController.cs" />
+    <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\PromocionesController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -162,6 +178,56 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Usuarios\Create.cshtml" />
+    <Content Include="Views\Usuarios\Delete.cshtml" />
+    <Content Include="Views\Usuarios\Details.cshtml" />
+    <Content Include="Views\Usuarios\Edit.cshtml" />
+    <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Clientes\Create.cshtml" />
+    <Content Include="Views\Clientes\Delete.cshtml" />
+    <Content Include="Views\Clientes\Details.cshtml" />
+    <Content Include="Views\Clientes\Edit.cshtml" />
+    <Content Include="Views\Clientes\Index.cshtml" />
+    <Content Include="Views\Pagos\Create.cshtml" />
+    <Content Include="Views\Pagos\Delete.cshtml" />
+    <Content Include="Views\Pagos\Details.cshtml" />
+    <Content Include="Views\Pagos\Edit.cshtml" />
+    <Content Include="Views\Pagos\Index.cshtml" />
+    <Content Include="Views\Categorias\Create.cshtml" />
+    <Content Include="Views\Categorias\Delete.cshtml" />
+    <Content Include="Views\Categorias\Details.cshtml" />
+    <Content Include="Views\Categorias\Edit.cshtml" />
+    <Content Include="Views\Categorias\Index.cshtml" />
+    <Content Include="Views\Promociones\Create.cshtml" />
+    <Content Include="Views\Promociones\Delete.cshtml" />
+    <Content Include="Views\Promociones\Details.cshtml" />
+    <Content Include="Views\Promociones\Edit.cshtml" />
+    <Content Include="Views\Promociones\Index.cshtml" />
+    <Content Include="Views\Productos\Create.cshtml" />
+    <Content Include="Views\Productos\Delete.cshtml" />
+    <Content Include="Views\Productos\Details.cshtml" />
+    <Content Include="Views\Productos\Edit.cshtml" />
+    <Content Include="Views\Productos\Index.cshtml" />
+    <Content Include="Views\Carritos\Create.cshtml" />
+    <Content Include="Views\Carritos\Delete.cshtml" />
+    <Content Include="Views\Carritos\Details.cshtml" />
+    <Content Include="Views\Carritos\Edit.cshtml" />
+    <Content Include="Views\Carritos\Index.cshtml" />
+    <Content Include="Views\ProductoEnCarritos\Create.cshtml" />
+    <Content Include="Views\ProductoEnCarritos\Delete.cshtml" />
+    <Content Include="Views\ProductoEnCarritos\Details.cshtml" />
+    <Content Include="Views\ProductoEnCarritos\Edit.cshtml" />
+    <Content Include="Views\ProductoEnCarritos\Index.cshtml" />
+    <Content Include="Views\CabezaFacturas\Create.cshtml" />
+    <Content Include="Views\CabezaFacturas\Delete.cshtml" />
+    <Content Include="Views\CabezaFacturas\Details.cshtml" />
+    <Content Include="Views\CabezaFacturas\Edit.cshtml" />
+    <Content Include="Views\CabezaFacturas\Index.cshtml" />
+    <Content Include="Views\CuerpoFacturas\Create.cshtml" />
+    <Content Include="Views\CuerpoFacturas\Delete.cshtml" />
+    <Content Include="Views\CuerpoFacturas\Details.cshtml" />
+    <Content Include="Views\CuerpoFacturas\Edit.cshtml" />
+    <Content Include="Views\CuerpoFacturas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

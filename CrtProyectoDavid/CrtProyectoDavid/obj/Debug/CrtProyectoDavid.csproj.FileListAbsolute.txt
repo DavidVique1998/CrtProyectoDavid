@@ -84,3 +84,10 @@ C:\Users\David\source\repos\CrtProyectoDavid\CrtProyectoDavid\CrtProyectoDavid\o
 C:\Users\David\source\repos\CrtProyectoDavid\CrtProyectoDavid\CrtProyectoDavid\obj\Debug\CrtProyectoDavid.csproj.CopyComplete
 C:\Users\David\source\repos\CrtProyectoDavid\CrtProyectoDavid\CrtProyectoDavid\obj\Debug\CrtProyectoDavid.dll
 C:\Users\David\source\repos\CrtProyectoDavid\CrtProyectoDavid\CrtProyectoDavid\obj\Debug\CrtProyectoDavid.pdb
+C:\Users\David\source\repos\CrtProyectoDavid\CrtProyectoDavid\CrtProyectoDavid\bin\BEUCrtProyectoDavid.dll
+C:\Users\David\source\repos\CrtProyectoDavid\CrtProyectoDavid\CrtProyectoDavid\bin\EntityFramework.dll
+C:\Users\David\source\repos\CrtProyectoDavid\CrtProyectoDavid\CrtProyectoDavid\bin\BEUCrtProyectoDavid.pdb
+C:\Users\David\source\repos\CrtProyectoDavid\CrtProyectoDavid\CrtProyectoDavid\bin\BEUCrtProyectoDavid.dll.config
+C:\Users\David\source\repos\CrtProyectoDavid\CrtProyectoDavid\CrtProyectoDavid\bin\EntityFramework.xml
+C:\Users\David\source\repos\CrtProyectoDavid\CrtProyectoDavid\CrtProyectoDavid\bin\EntityFramework.SqlServer.dll
+C:\Users\David\source\repos\CrtProyectoDavid\CrtProyectoDavid\CrtProyectoDavid\bin\EntityFramework.SqlServer.xml

@@ -1,0 +1,48 @@
+﻿@model BEUCrtProyectoDavid.Cliente
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Cliente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cln_tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cln_tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cln_dateOfCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cln_dateOfCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.uso_usu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.uso_usu)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

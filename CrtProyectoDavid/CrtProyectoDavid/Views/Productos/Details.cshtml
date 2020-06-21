@@ -1,0 +1,74 @@
+﻿@model BEUCrtProyectoDavid.Producto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Producto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.prd_nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prd_nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prd_img)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prd_img)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prd_tal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prd_tal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prd_crt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prd_crt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prd_cnt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prd_cnt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categoria.cat_nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria.cat_nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Promocion.prm_nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Promocion.prm_nom)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.prd_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

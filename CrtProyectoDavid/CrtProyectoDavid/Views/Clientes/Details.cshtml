@@ -1,0 +1,42 @@
+﻿@model BEUCrtProyectoDavid.Cliente
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Cliente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cln_tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cln_tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cln_dateOfCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cln_dateOfCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.uso_usu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.uso_usu)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.cln_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

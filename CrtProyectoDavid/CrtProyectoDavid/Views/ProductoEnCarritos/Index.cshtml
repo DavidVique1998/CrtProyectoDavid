@@ -1,0 +1,57 @@
+﻿@model IEnumerable<BEUCrtProyectoDavid.ProductoEnCarrito>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pcr_est)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prd_cnt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pcr_dateOfCreated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Carrito.car_tipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Producto.prd_nom)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pcr_est)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prd_cnt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pcr_dateOfCreated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Carrito.car_tipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Producto.prd_nom)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.pcr_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.pcr_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.pcr_id })
+        </td>
+    </tr>
+}
+
+</table>

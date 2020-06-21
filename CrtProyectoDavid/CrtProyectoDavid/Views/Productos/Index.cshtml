@@ -1,0 +1,69 @@
+﻿@model IEnumerable<BEUCrtProyectoDavid.Producto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.prd_nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prd_img)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prd_tal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prd_crt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prd_cnt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria.cat_nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Promocion.prm_nom)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.prd_nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prd_img)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prd_tal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prd_crt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prd_cnt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categoria.cat_nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Promocion.prm_nom)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.prd_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.prd_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.prd_id })
+        </td>
+    </tr>
+}
+
+</table>

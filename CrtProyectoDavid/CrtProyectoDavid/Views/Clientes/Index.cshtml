@@ -1,0 +1,45 @@
+﻿@model IEnumerable<BEUCrtProyectoDavid.Cliente>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.cln_tipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cln_dateOfCreated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.uso_usu)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.cln_tipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cln_dateOfCreated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario.uso_usu)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.cln_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.cln_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.cln_id })
+        </td>
+    </tr>
+}
+
+</table>

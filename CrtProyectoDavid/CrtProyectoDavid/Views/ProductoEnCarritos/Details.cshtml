@@ -1,0 +1,58 @@
+﻿@model BEUCrtProyectoDavid.ProductoEnCarrito
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProductoEnCarrito</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pcr_est)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pcr_est)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prd_cnt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prd_cnt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pcr_dateOfCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pcr_dateOfCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Carrito.car_tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Carrito.car_tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Producto.prd_nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Producto.prd_nom)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.pcr_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

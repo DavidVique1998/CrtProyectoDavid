@@ -1,0 +1,50 @@
+﻿@model BEUCrtProyectoDavid.Promocion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Promocion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.prm_nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prm_nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prm_tip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prm_tip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prm_can)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prm_can)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prm_por)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prm_por)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.prm_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
