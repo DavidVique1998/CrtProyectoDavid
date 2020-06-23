@@ -7,18 +7,18 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BEUCrtProyectoDavid;
+using BEUCrtProyectoDavid.Queris;
 
 namespace CrtProyectoDavid.Controllers
 {
     public class CuerpoFacturasController : Controller
     {
-        private emmcomerseEntities db = new emmcomerseEntities();
 
         // GET: CuerpoFacturas
         public ActionResult Index()
         {
-            var cuerpoFactura = db.CuerpoFactura.Include(c => c.CabezaFactura).Include(c => c.Carrito);
-            return View(cuerpoFactura.ToList());
+            
+            return View(CuerpoFacturaBLL.List());
         }
 
         // GET: CuerpoFacturas/Details/5
@@ -28,7 +28,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CuerpoFactura cuerpoFactura = db.CuerpoFactura.Find(id);
+            CuerpoFactura cuerpoFactura = CuerpoFacturaBLL.Get(id);
             if (cuerpoFactura == null)
             {
                 return HttpNotFound();
@@ -39,8 +39,8 @@ namespace CrtProyectoDavid.Controllers
         // GET: CuerpoFacturas/Create
         public ActionResult Create()
         {
-            ViewBag.cbf_id = new SelectList(db.CabezaFactura, "cbf_id", "cbf_id");
-            ViewBag.car_id = new SelectList(db.Carrito, "car_id", "car_tipo");
+            ViewBag.cbf_id = new SelectList(CabezaFacturaBLL.List(), "cbf_id", "cbf_id");
+            ViewBag.car_id = new SelectList(CarritoBLL.List(), "car_id", "car_tipo");
             return View();
         }
 
@@ -53,13 +53,12 @@ namespace CrtProyectoDavid.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.CuerpoFactura.Add(cuerpoFactura);
-                db.SaveChanges();
+                CuerpoFacturaBLL.Create(cuerpoFactura);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.cbf_id = new SelectList(db.CabezaFactura, "cbf_id", "cbf_id", cuerpoFactura.cbf_id);
-            ViewBag.car_id = new SelectList(db.Carrito, "car_id", "car_tipo", cuerpoFactura.car_id);
+            ViewBag.cbf_id = new SelectList(CabezaFacturaBLL.List(), "cbf_id", "cbf_id", cuerpoFactura.cbf_id);
+            ViewBag.car_id = new SelectList(CarritoBLL.List(), "car_id", "car_tipo", cuerpoFactura.car_id);
             return View(cuerpoFactura);
         }
 
@@ -70,13 +69,13 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CuerpoFactura cuerpoFactura = db.CuerpoFactura.Find(id);
+            CuerpoFactura cuerpoFactura = CuerpoFacturaBLL.Get(id);
             if (cuerpoFactura == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.cbf_id = new SelectList(db.CabezaFactura, "cbf_id", "cbf_id", cuerpoFactura.cbf_id);
-            ViewBag.car_id = new SelectList(db.Carrito, "car_id", "car_tipo", cuerpoFactura.car_id);
+            ViewBag.cbf_id = new SelectList(CabezaFacturaBLL.List(), "cbf_id", "cbf_id", cuerpoFactura.cbf_id);
+            ViewBag.car_id = new SelectList(CarritoBLL.List(), "car_id", "car_tipo", cuerpoFactura.car_id);
             return View(cuerpoFactura);
         }
 
@@ -89,12 +88,11 @@ namespace CrtProyectoDavid.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cuerpoFactura).State = EntityState.Modified;
-                db.SaveChanges();
+                CuerpoFacturaBLL.Update(cuerpoFactura);
                 return RedirectToAction("Index");
             }
-            ViewBag.cbf_id = new SelectList(db.CabezaFactura, "cbf_id", "cbf_id", cuerpoFactura.cbf_id);
-            ViewBag.car_id = new SelectList(db.Carrito, "car_id", "car_tipo", cuerpoFactura.car_id);
+            ViewBag.cbf_id = new SelectList(CabezaFacturaBLL.List(), "cbf_id", "cbf_id", cuerpoFactura.cbf_id);
+            ViewBag.car_id = new SelectList(CarritoBLL.List(), "car_id", "car_tipo", cuerpoFactura.car_id);
             return View(cuerpoFactura);
         }
 
@@ -105,7 +103,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CuerpoFactura cuerpoFactura = db.CuerpoFactura.Find(id);
+            CuerpoFactura cuerpoFactura = CuerpoFacturaBLL.Get(id);
             if (cuerpoFactura == null)
             {
                 return HttpNotFound();
@@ -118,19 +116,8 @@ namespace CrtProyectoDavid.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CuerpoFactura cuerpoFactura = db.CuerpoFactura.Find(id);
-            db.CuerpoFactura.Remove(cuerpoFactura);
-            db.SaveChanges();
+            CuerpoFacturaBLL.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

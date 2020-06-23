@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BEUCrtProyectoDavid.Queris
 {
-    class CategoriaBLL
+    public class CategoriaBLL
     {
         public static void Create(Categoria a)
         {

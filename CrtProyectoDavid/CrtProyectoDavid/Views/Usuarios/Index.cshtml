@@ -14,9 +14,9 @@
         <th>
             @Html.DisplayNameFor(model => model.uso_usu)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.uso_con)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.uso_nom)
         </th>
@@ -31,9 +31,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.uso_usu)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.uso_con)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.uso_nom)
         </td>
@@ -41,9 +41,9 @@
             @Html.DisplayFor(modelItem => item.uso_cor)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.uso_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.uso_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.uso_id })
+            @Html.ActionLink(" ", "Edit", new { id=item.uso_id }, htmlAttributes: new { @class = "btn btn-md btn-warning span glyphicon glyphicon-pencil", @title = "Editar" }) |
+            @Html.ActionLink(" ", "Details", new { id=item.uso_id }, htmlAttributes: new { @class = "btn btn-md btn-primary span glyphicon glyphicon-search", @title = "Ver" }) |
+            @Html.ActionLink(" ", "Delete", new { id=item.uso_id }, htmlAttributes: new { @class = "btn btn-md btn-danger span glyphicon glyphicon-trash", @title = "Borrar" })
         </td>
     </tr>
 }

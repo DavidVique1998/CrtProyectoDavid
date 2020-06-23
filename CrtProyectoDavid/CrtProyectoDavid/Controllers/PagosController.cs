@@ -7,18 +7,17 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BEUCrtProyectoDavid;
+using BEUCrtProyectoDavid.Queris;
 
 namespace CrtProyectoDavid.Controllers
 {
     public class PagosController : Controller
     {
-        private emmcomerseEntities db = new emmcomerseEntities();
 
         // GET: Pagos
         public ActionResult Index()
         {
-            var pago = db.Pago.Include(p => p.Cliente);
-            return View(pago.ToList());
+            return View(PagoBLL.List());
         }
 
         // GET: Pagos/Details/5
@@ -28,7 +27,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pago pago = db.Pago.Find(id);
+            Pago pago = PagoBLL.Get(id);
             if (pago == null)
             {
                 return HttpNotFound();
@@ -39,7 +38,7 @@ namespace CrtProyectoDavid.Controllers
         // GET: Pagos/Create
         public ActionResult Create()
         {
-            ViewBag.cln_id = new SelectList(db.Cliente, "cln_id", "cln_tipo");
+            ViewBag.cln_id = new SelectList(ClienteBLL.List(), "cln_id", "cln_tipo");
             return View();
         }
 
@@ -52,12 +51,11 @@ namespace CrtProyectoDavid.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Pago.Add(pago);
-                db.SaveChanges();
+                PagoBLL.Create(pago);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.cln_id = new SelectList(db.Cliente, "cln_id", "cln_tipo", pago.cln_id);
+            ViewBag.cln_id = new SelectList(ClienteBLL.List(), "cln_id", "cln_tipo", pago.cln_id);
             return View(pago);
         }
 
@@ -68,12 +66,12 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pago pago = db.Pago.Find(id);
+            Pago pago = PagoBLL.Get(id);
             if (pago == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.cln_id = new SelectList(db.Cliente, "cln_id", "cln_tipo", pago.cln_id);
+            ViewBag.cln_id = new SelectList(ClienteBLL.List(), "cln_id", "cln_tipo", pago.cln_id);
             return View(pago);
         }
 
@@ -86,11 +84,10 @@ namespace CrtProyectoDavid.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(pago).State = EntityState.Modified;
-                db.SaveChanges();
+                PagoBLL.Update(pago);
                 return RedirectToAction("Index");
             }
-            ViewBag.cln_id = new SelectList(db.Cliente, "cln_id", "cln_tipo", pago.cln_id);
+            ViewBag.cln_id = new SelectList(ClienteBLL.List(), "cln_id", "cln_tipo", pago.cln_id);
             return View(pago);
         }
 
@@ -101,7 +98,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pago pago = db.Pago.Find(id);
+            Pago pago = PagoBLL.Get(id);
             if (pago == null)
             {
                 return HttpNotFound();
@@ -114,19 +111,9 @@ namespace CrtProyectoDavid.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Pago pago = db.Pago.Find(id);
-            db.Pago.Remove(pago);
-            db.SaveChanges();
+            PagoBLL.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BEUCrtProyectoDavid.Queris
 {
-    class CuerpoFacturaBLL
+    public class CuerpoFacturaBLL
     {
         public static void Create(CuerpoFactura a)
         {
@@ -16,7 +17,6 @@ namespace BEUCrtProyectoDavid.Queris
                 {
                     try
                     {
-
                         db.CuerpoFactura.Add(a);
                         db.SaveChanges();
                         transaction.Commit();
@@ -83,7 +83,7 @@ namespace BEUCrtProyectoDavid.Queris
         public static List<CuerpoFactura> List()
         {
             emmcomerseEntities db = new emmcomerseEntities();
-            return db.CuerpoFactura.ToList();
+            return db.CuerpoFactura.Include(c=>c.CabezaFactura).Include(c=>c.Carrito).ToList();
         }
 
     }

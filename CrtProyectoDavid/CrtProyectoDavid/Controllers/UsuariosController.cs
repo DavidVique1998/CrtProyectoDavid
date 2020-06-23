@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BEUCrtProyectoDavid;
+using BEUCrtProyectoDavid.Queris;
 
 namespace CrtProyectoDavid.Controllers
 {
@@ -17,7 +18,8 @@ namespace CrtProyectoDavid.Controllers
         // GET: Usuarios
         public ActionResult Index()
         {
-            return View(db.Usuario.ToList());
+
+            return View(UsuarioBLL.List());
         }
 
         // GET: Usuarios/Details/5
@@ -27,7 +29,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuario.Find(id);
+            Usuario usuario = UsuarioBLL.Get(id);
             if (usuario == null)
             {
                 return HttpNotFound();
@@ -50,8 +52,7 @@ namespace CrtProyectoDavid.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Usuario.Add(usuario);
-                db.SaveChanges();
+                UsuarioBLL.Create(usuario);
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +66,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuario.Find(id);
+            Usuario usuario = UsuarioBLL.Get(id);
             if (usuario == null)
             {
                 return HttpNotFound();
@@ -82,8 +83,7 @@ namespace CrtProyectoDavid.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(usuario).State = EntityState.Modified;
-                db.SaveChanges();
+                UsuarioBLL.Update(usuario);
                 return RedirectToAction("Index");
             }
             return View(usuario);
@@ -96,7 +96,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuario.Find(id);
+            Usuario usuario = UsuarioBLL.Get(id);
             if (usuario == null)
             {
                 return HttpNotFound();
@@ -109,9 +109,7 @@ namespace CrtProyectoDavid.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Usuario usuario = db.Usuario.Find(id);
-            db.Usuario.Remove(usuario);
-            db.SaveChanges();
+            UsuarioBLL.Delete(id);
             return RedirectToAction("Index");
         }
 

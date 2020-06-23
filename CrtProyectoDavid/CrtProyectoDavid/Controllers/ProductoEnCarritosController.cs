@@ -7,18 +7,17 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BEUCrtProyectoDavid;
+using BEUCrtProyectoDavid.Queris;
 
 namespace CrtProyectoDavid.Controllers
 {
     public class ProductoEnCarritosController : Controller
     {
-        private emmcomerseEntities db = new emmcomerseEntities();
-
+        
         // GET: ProductoEnCarritos
         public ActionResult Index()
         {
-            var productoEnCarrito = db.ProductoEnCarrito.Include(p => p.Carrito).Include(p => p.Producto);
-            return View(productoEnCarrito.ToList());
+           return View(ProductoEnCarritoBLL.List());
         }
 
         // GET: ProductoEnCarritos/Details/5
@@ -28,7 +27,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProductoEnCarrito productoEnCarrito = db.ProductoEnCarrito.Find(id);
+            ProductoEnCarrito productoEnCarrito = ProductoEnCarritoBLL.Get(id);
             if (productoEnCarrito == null)
             {
                 return HttpNotFound();
@@ -39,8 +38,8 @@ namespace CrtProyectoDavid.Controllers
         // GET: ProductoEnCarritos/Create
         public ActionResult Create()
         {
-            ViewBag.car_id = new SelectList(db.Carrito, "car_id", "car_tipo");
-            ViewBag.prd_id = new SelectList(db.Producto, "prd_id", "prd_nom");
+            ViewBag.car_id = new SelectList(CarritoBLL.List(), "car_id", "car_tipo");
+            ViewBag.prd_id = new SelectList(ProductoBLL.List(), "prd_id", "prd_nom");
             return View();
         }
 
@@ -53,13 +52,12 @@ namespace CrtProyectoDavid.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ProductoEnCarrito.Add(productoEnCarrito);
-                db.SaveChanges();
+                ProductoEnCarritoBLL.Create(productoEnCarrito);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.car_id = new SelectList(db.Carrito, "car_id", "car_tipo", productoEnCarrito.car_id);
-            ViewBag.prd_id = new SelectList(db.Producto, "prd_id", "prd_nom", productoEnCarrito.prd_id);
+            ViewBag.car_id = new SelectList(CarritoBLL.List(), "car_id", "car_tipo", productoEnCarrito.car_id);
+            ViewBag.prd_id = new SelectList(ProductoBLL.List(), "prd_id", "prd_nom", productoEnCarrito.prd_id);
             return View(productoEnCarrito);
         }
 
@@ -70,13 +68,13 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProductoEnCarrito productoEnCarrito = db.ProductoEnCarrito.Find(id);
+            ProductoEnCarrito productoEnCarrito = ProductoEnCarritoBLL.Get(id);
             if (productoEnCarrito == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.car_id = new SelectList(db.Carrito, "car_id", "car_tipo", productoEnCarrito.car_id);
-            ViewBag.prd_id = new SelectList(db.Producto, "prd_id", "prd_nom", productoEnCarrito.prd_id);
+            ViewBag.car_id = new SelectList(CarritoBLL.List(), "car_id", "car_tipo", productoEnCarrito.car_id);
+            ViewBag.prd_id = new SelectList(ProductoBLL.List(), "prd_id", "prd_nom", productoEnCarrito.prd_id);
             return View(productoEnCarrito);
         }
 
@@ -89,12 +87,11 @@ namespace CrtProyectoDavid.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(productoEnCarrito).State = EntityState.Modified;
-                db.SaveChanges();
+                ProductoEnCarritoBLL.Update(productoEnCarrito);
                 return RedirectToAction("Index");
             }
-            ViewBag.car_id = new SelectList(db.Carrito, "car_id", "car_tipo", productoEnCarrito.car_id);
-            ViewBag.prd_id = new SelectList(db.Producto, "prd_id", "prd_nom", productoEnCarrito.prd_id);
+            ViewBag.car_id = new SelectList(CarritoBLL.List(), "car_id", "car_tipo", productoEnCarrito.car_id);
+            ViewBag.prd_id = new SelectList(ProductoBLL.List(), "prd_id", "prd_nom", productoEnCarrito.prd_id);
             return View(productoEnCarrito);
         }
 
@@ -105,7 +102,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProductoEnCarrito productoEnCarrito = db.ProductoEnCarrito.Find(id);
+            ProductoEnCarrito productoEnCarrito = ProductoEnCarritoBLL.Get(id);
             if (productoEnCarrito == null)
             {
                 return HttpNotFound();
@@ -118,19 +115,8 @@ namespace CrtProyectoDavid.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ProductoEnCarrito productoEnCarrito = db.ProductoEnCarrito.Find(id);
-            db.ProductoEnCarrito.Remove(productoEnCarrito);
-            db.SaveChanges();
+            ProductoEnCarritoBLL.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

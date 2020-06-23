@@ -7,17 +7,18 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BEUCrtProyectoDavid;
+using BEUCrtProyectoDavid.Queris;
 
 namespace CrtProyectoDavid.Controllers
 {
     public class CategoriasController : Controller
     {
-        private emmcomerseEntities db = new emmcomerseEntities();
+        
 
         // GET: Categorias
         public ActionResult Index()
         {
-            return View(db.Categoria.ToList());
+            return View(CategoriaBLL.List());
         }
 
         // GET: Categorias/Details/5
@@ -27,7 +28,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categoria categoria = db.Categoria.Find(id);
+            Categoria categoria = CategoriaBLL.Get(id);
             if (categoria == null)
             {
                 return HttpNotFound();
@@ -50,8 +51,7 @@ namespace CrtProyectoDavid.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Categoria.Add(categoria);
-                db.SaveChanges();
+                CategoriaBLL.Create(categoria);
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +65,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categoria categoria = db.Categoria.Find(id);
+            Categoria categoria = CategoriaBLL.Get(id);
             if (categoria == null)
             {
                 return HttpNotFound();
@@ -82,8 +82,7 @@ namespace CrtProyectoDavid.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(categoria).State = EntityState.Modified;
-                db.SaveChanges();
+                CategoriaBLL.Update(categoria);
                 return RedirectToAction("Index");
             }
             return View(categoria);
@@ -96,7 +95,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categoria categoria = db.Categoria.Find(id);
+            Categoria categoria = CategoriaBLL.Get(id);
             if (categoria == null)
             {
                 return HttpNotFound();
@@ -109,19 +108,8 @@ namespace CrtProyectoDavid.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Categoria categoria = db.Categoria.Find(id);
-            db.Categoria.Remove(categoria);
-            db.SaveChanges();
+            CategoriaBLL.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

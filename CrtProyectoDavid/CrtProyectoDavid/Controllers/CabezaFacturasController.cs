@@ -7,18 +7,17 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BEUCrtProyectoDavid;
+using BEUCrtProyectoDavid.Queris;
 
 namespace CrtProyectoDavid.Controllers
 {
     public class CabezaFacturasController : Controller
     {
-        private emmcomerseEntities db = new emmcomerseEntities();
 
         // GET: CabezaFacturas
         public ActionResult Index()
         {
-            var cabezaFactura = db.CabezaFactura.Include(c => c.Cliente);
-            return View(cabezaFactura.ToList());
+            return View(CabezaFacturaBLL.List());
         }
 
         // GET: CabezaFacturas/Details/5
@@ -28,7 +27,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CabezaFactura cabezaFactura = db.CabezaFactura.Find(id);
+            CabezaFactura cabezaFactura = CabezaFacturaBLL.Get(id);
             if (cabezaFactura == null)
             {
                 return HttpNotFound();
@@ -39,7 +38,7 @@ namespace CrtProyectoDavid.Controllers
         // GET: CabezaFacturas/Create
         public ActionResult Create()
         {
-            ViewBag.cln_id = new SelectList(db.Cliente, "cln_id", "cln_tipo");
+            ViewBag.cln_id = new SelectList(ClienteBLL.List(), "cln_id", "cln_tipo");
             return View();
         }
 
@@ -52,12 +51,11 @@ namespace CrtProyectoDavid.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.CabezaFactura.Add(cabezaFactura);
-                db.SaveChanges();
+                CabezaFacturaBLL.Create(cabezaFactura);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.cln_id = new SelectList(db.Cliente, "cln_id", "cln_tipo", cabezaFactura.cln_id);
+            ViewBag.cln_id = new SelectList(ClienteBLL.List(), "cln_id", "cln_tipo", cabezaFactura.cln_id);
             return View(cabezaFactura);
         }
 
@@ -68,12 +66,12 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CabezaFactura cabezaFactura = db.CabezaFactura.Find(id);
+            CabezaFactura cabezaFactura = CabezaFacturaBLL.Get(id);
             if (cabezaFactura == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.cln_id = new SelectList(db.Cliente, "cln_id", "cln_tipo", cabezaFactura.cln_id);
+            ViewBag.cln_id = new SelectList(ClienteBLL.List(), "cln_id", "cln_tipo", cabezaFactura.cln_id);
             return View(cabezaFactura);
         }
 
@@ -86,11 +84,10 @@ namespace CrtProyectoDavid.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cabezaFactura).State = EntityState.Modified;
-                db.SaveChanges();
+                CabezaFacturaBLL.Update(cabezaFactura);
                 return RedirectToAction("Index");
             }
-            ViewBag.cln_id = new SelectList(db.Cliente, "cln_id", "cln_tipo", cabezaFactura.cln_id);
+            ViewBag.cln_id = new SelectList(ClienteBLL.List(), "cln_id", "cln_tipo", cabezaFactura.cln_id);
             return View(cabezaFactura);
         }
 
@@ -101,7 +98,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CabezaFactura cabezaFactura = db.CabezaFactura.Find(id);
+            CabezaFactura cabezaFactura =CabezaFacturaBLL.Get(id);
             if (cabezaFactura == null)
             {
                 return HttpNotFound();
@@ -114,19 +111,8 @@ namespace CrtProyectoDavid.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CabezaFactura cabezaFactura = db.CabezaFactura.Find(id);
-            db.CabezaFactura.Remove(cabezaFactura);
-            db.SaveChanges();
+            CabezaFacturaBLL.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

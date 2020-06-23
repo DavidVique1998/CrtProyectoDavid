@@ -7,17 +7,17 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BEUCrtProyectoDavid;
+using BEUCrtProyectoDavid.Queris;
 
 namespace CrtProyectoDavid.Controllers
 {
     public class PromocionesController : Controller
     {
-        private emmcomerseEntities db = new emmcomerseEntities();
 
         // GET: Promociones
         public ActionResult Index()
         {
-            return View(db.Promocion.ToList());
+            return View(PromocionBLL.List());
         }
 
         // GET: Promociones/Details/5
@@ -27,7 +27,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Promocion promocion = db.Promocion.Find(id);
+            Promocion promocion = PromocionBLL.Get(id);
             if (promocion == null)
             {
                 return HttpNotFound();
@@ -50,8 +50,7 @@ namespace CrtProyectoDavid.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Promocion.Add(promocion);
-                db.SaveChanges();
+                PromocionBLL.Create(promocion);
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +64,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Promocion promocion = db.Promocion.Find(id);
+            Promocion promocion = PromocionBLL.Get(id);
             if (promocion == null)
             {
                 return HttpNotFound();
@@ -82,8 +81,7 @@ namespace CrtProyectoDavid.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(promocion).State = EntityState.Modified;
-                db.SaveChanges();
+                PromocionBLL.Update(promocion);
                 return RedirectToAction("Index");
             }
             return View(promocion);
@@ -96,7 +94,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Promocion promocion = db.Promocion.Find(id);
+            Promocion promocion = PromocionBLL.Get(id);
             if (promocion == null)
             {
                 return HttpNotFound();
@@ -109,19 +107,8 @@ namespace CrtProyectoDavid.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Promocion promocion = db.Promocion.Find(id);
-            db.Promocion.Remove(promocion);
-            db.SaveChanges();
+            PromocionBLL.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

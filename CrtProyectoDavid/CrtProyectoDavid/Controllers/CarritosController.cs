@@ -7,18 +7,19 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BEUCrtProyectoDavid;
+using BEUCrtProyectoDavid.Queris;
 
 namespace CrtProyectoDavid.Controllers
 {
     public class CarritosController : Controller
     {
-        private emmcomerseEntities db = new emmcomerseEntities();
+        
 
         // GET: Carritos
         public ActionResult Index()
         {
-            var carrito = db.Carrito.Include(c => c.Cliente);
-            return View(carrito.ToList());
+            
+            return View(CarritoBLL.List());
         }
 
         // GET: Carritos/Details/5
@@ -28,7 +29,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carrito carrito = db.Carrito.Find(id);
+            Carrito carrito = CarritoBLL.Get(id);
             if (carrito == null)
             {
                 return HttpNotFound();
@@ -39,7 +40,7 @@ namespace CrtProyectoDavid.Controllers
         // GET: Carritos/Create
         public ActionResult Create()
         {
-            ViewBag.cln_id = new SelectList(db.Cliente, "cln_id", "cln_tipo");
+            ViewBag.cln_id = new SelectList(ClienteBLL.List(), "cln_id", "cln_tipo");
             return View();
         }
 
@@ -52,12 +53,11 @@ namespace CrtProyectoDavid.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Carrito.Add(carrito);
-                db.SaveChanges();
+                CarritoBLL.Create(carrito);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.cln_id = new SelectList(db.Cliente, "cln_id", "cln_tipo", carrito.cln_id);
+            ViewBag.cln_id = new SelectList(ClienteBLL.List(), "cln_id", "cln_tipo", carrito.cln_id);
             return View(carrito);
         }
 
@@ -68,12 +68,12 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carrito carrito = db.Carrito.Find(id);
+            Carrito carrito = CarritoBLL.Get(id);
             if (carrito == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.cln_id = new SelectList(db.Cliente, "cln_id", "cln_tipo", carrito.cln_id);
+            ViewBag.cln_id = new SelectList(ClienteBLL.List(), "cln_id", "cln_tipo", carrito.cln_id);
             return View(carrito);
         }
 
@@ -86,11 +86,10 @@ namespace CrtProyectoDavid.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(carrito).State = EntityState.Modified;
-                db.SaveChanges();
+                CarritoBLL.Update(carrito);
                 return RedirectToAction("Index");
             }
-            ViewBag.cln_id = new SelectList(db.Cliente, "cln_id", "cln_tipo", carrito.cln_id);
+            ViewBag.cln_id = new SelectList(ClienteBLL.List(), "cln_id", "cln_tipo", carrito.cln_id);
             return View(carrito);
         }
 
@@ -101,7 +100,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carrito carrito = db.Carrito.Find(id);
+            Carrito carrito = CarritoBLL.Get(id);
             if (carrito == null)
             {
                 return HttpNotFound();
@@ -114,19 +113,8 @@ namespace CrtProyectoDavid.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Carrito carrito = db.Carrito.Find(id);
-            db.Carrito.Remove(carrito);
-            db.SaveChanges();
+            CarritoBLL.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

@@ -7,18 +7,19 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BEUCrtProyectoDavid;
+using BEUCrtProyectoDavid.Queris;
 
 namespace CrtProyectoDavid.Controllers
 {
     public class ClientesController : Controller
     {
-        private emmcomerseEntities db = new emmcomerseEntities();
+
 
         // GET: Clientes
         public ActionResult Index()
         {
-            var cliente = db.Cliente.Include(c => c.Usuario);
-            return View(cliente.ToList());
+            
+            return View(ClienteBLL.List());
         }
 
         // GET: Clientes/Details/5
@@ -28,7 +29,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cliente cliente = db.Cliente.Find(id);
+            Cliente cliente = ClienteBLL.Get(id);
             if (cliente == null)
             {
                 return HttpNotFound();
@@ -39,7 +40,7 @@ namespace CrtProyectoDavid.Controllers
         // GET: Clientes/Create
         public ActionResult Create()
         {
-            ViewBag.uso_id = new SelectList(db.Usuario, "uso_id", "uso_usu");
+            ViewBag.uso_id = new SelectList(UsuarioBLL.List(), "uso_id", "uso_usu");
             return View();
         }
 
@@ -52,12 +53,11 @@ namespace CrtProyectoDavid.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Cliente.Add(cliente);
-                db.SaveChanges();
+                ClienteBLL.Create(cliente);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.uso_id = new SelectList(db.Usuario, "uso_id", "uso_usu", cliente.uso_id);
+            ViewBag.uso_id = new SelectList(UsuarioBLL.List(), "uso_id", "uso_usu", cliente.uso_id);
             return View(cliente);
         }
 
@@ -68,12 +68,12 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cliente cliente = db.Cliente.Find(id);
+            Cliente cliente = ClienteBLL.Get(id);
             if (cliente == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.uso_id = new SelectList(db.Usuario, "uso_id", "uso_usu", cliente.uso_id);
+            ViewBag.uso_id = new SelectList(UsuarioBLL.List(), "uso_id", "uso_usu", cliente.uso_id);
             return View(cliente);
         }
 
@@ -86,11 +86,10 @@ namespace CrtProyectoDavid.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cliente).State = EntityState.Modified;
-                db.SaveChanges();
+                ClienteBLL.Update(cliente);
                 return RedirectToAction("Index");
             }
-            ViewBag.uso_id = new SelectList(db.Usuario, "uso_id", "uso_usu", cliente.uso_id);
+            ViewBag.uso_id = new SelectList(UsuarioBLL.List(), "uso_id", "uso_usu", cliente.uso_id);
             return View(cliente);
         }
 
@@ -101,7 +100,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cliente cliente = db.Cliente.Find(id);
+            Cliente cliente = ClienteBLL.Get(id);
             if (cliente == null)
             {
                 return HttpNotFound();
@@ -114,19 +113,9 @@ namespace CrtProyectoDavid.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Cliente cliente = db.Cliente.Find(id);
-            db.Cliente.Remove(cliente);
-            db.SaveChanges();
+            ClienteBLL.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

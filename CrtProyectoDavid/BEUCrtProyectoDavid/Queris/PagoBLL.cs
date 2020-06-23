@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BEUCrtProyectoDavid.Queris
 {
-    class PagoBLL
+    public class PagoBLL
     {
         public static void Create(Pago a)
         {
@@ -83,7 +84,7 @@ namespace BEUCrtProyectoDavid.Queris
         public static List<Pago> List()
         {
             emmcomerseEntities db = new emmcomerseEntities();
-            return db.Pago.ToList();
+            return db.Pago.Include(p => p.Cliente).ToList();
         }
 
         public static List<Pago> List(int cln_id)

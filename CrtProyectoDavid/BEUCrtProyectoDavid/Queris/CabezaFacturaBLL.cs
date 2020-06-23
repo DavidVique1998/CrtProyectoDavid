@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BEUCrtProyectoDavid.Queris
 {
-    class CabezaFacturaBLL
+    public class CabezaFacturaBLL
     {
         public static void Create(CabezaFactura a)
         {
@@ -83,7 +84,7 @@ namespace BEUCrtProyectoDavid.Queris
         public static List<CabezaFactura> List()
         {
             emmcomerseEntities db = new emmcomerseEntities();
-            return db.CabezaFactura.ToList();
+            return db.CabezaFactura.Include(c=>c.Cliente).ToList();
         }
 
         public static List<CabezaFactura> List(int cln_id)

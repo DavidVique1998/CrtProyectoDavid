@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BEUCrtProyectoDavid.Queris
 {
-    class ProductoBLL
+    public class ProductoBLL
     {
         public static void Create(Producto a)
         {
@@ -82,7 +83,7 @@ namespace BEUCrtProyectoDavid.Queris
         public static List<Producto> List()
         {
             emmcomerseEntities db = new emmcomerseEntities();
-            return db.Producto.ToList();
+            return db.Producto.Include(p=>p.Categoria).Include(p=>p.Promocion).ToList();
         }
 
         public static List<Producto> GetProdutsByCategory(int cat_id)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BEUCrtProyectoDavid.Queris
 {
-    class UsuarioBLL
+    public class UsuarioBLL
     {
         
         public static void Create(Usuario a)
@@ -17,6 +17,7 @@ namespace BEUCrtProyectoDavid.Queris
                 {
                     try
                     {
+                        a.uso_rol = "Cliente";
                         db.Usuario.Add(a);
                         db.SaveChanges();
                         transaction.Commit();

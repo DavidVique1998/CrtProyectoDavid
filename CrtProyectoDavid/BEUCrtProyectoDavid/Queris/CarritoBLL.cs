@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BEUCrtProyectoDavid.Queris
 {
-    class CarritoBLL
+    public class CarritoBLL
     {
         public static void Create(Carrito a)
         {
@@ -82,7 +83,7 @@ namespace BEUCrtProyectoDavid.Queris
         public static List<Carrito> List()
         {
             emmcomerseEntities db = new emmcomerseEntities();
-            return db.Carrito.ToList();
+            return db.Carrito.Include(c=> c.Cliente).ToList();
         }
 
         public static List<Carrito> List(int cln_id)

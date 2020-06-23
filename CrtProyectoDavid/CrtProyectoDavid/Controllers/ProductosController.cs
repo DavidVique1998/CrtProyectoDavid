@@ -7,18 +7,19 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BEUCrtProyectoDavid;
+using BEUCrtProyectoDavid.Queris;
 
 namespace CrtProyectoDavid.Controllers
 {
     public class ProductosController : Controller
     {
-        private emmcomerseEntities db = new emmcomerseEntities();
+        
 
         // GET: Productos
         public ActionResult Index()
         {
-            var producto = db.Producto.Include(p => p.Categoria).Include(p => p.Promocion);
-            return View(producto.ToList());
+            
+            return View(ProductoBLL.List());
         }
 
         // GET: Productos/Details/5
@@ -28,7 +29,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Producto.Find(id);
+            Producto producto = ProductoBLL.Get(id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -39,8 +40,8 @@ namespace CrtProyectoDavid.Controllers
         // GET: Productos/Create
         public ActionResult Create()
         {
-            ViewBag.cat_id = new SelectList(db.Categoria, "cat_id", "cat_nom");
-            ViewBag.prm_id = new SelectList(db.Promocion, "prm_id", "prm_nom");
+            ViewBag.cat_id = new SelectList(CategoriaBLL.List(), "cat_id", "cat_nom");
+            ViewBag.prm_id = new SelectList(PromocionBLL.List(), "prm_id", "prm_nom");
             return View();
         }
 
@@ -53,13 +54,12 @@ namespace CrtProyectoDavid.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Producto.Add(producto);
-                db.SaveChanges();
+                ProductoBLL.Create(producto);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.cat_id = new SelectList(db.Categoria, "cat_id", "cat_nom", producto.cat_id);
-            ViewBag.prm_id = new SelectList(db.Promocion, "prm_id", "prm_nom", producto.prm_id);
+            ViewBag.cat_id = new SelectList(CategoriaBLL.List(), "cat_id", "cat_nom", producto.cat_id);
+            ViewBag.prm_id = new SelectList(PromocionBLL.List(), "prm_id", "prm_nom", producto.prm_id);
             return View(producto);
         }
 
@@ -70,13 +70,13 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Producto.Find(id);
+            Producto producto = ProductoBLL.Get(id);
             if (producto == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.cat_id = new SelectList(db.Categoria, "cat_id", "cat_nom", producto.cat_id);
-            ViewBag.prm_id = new SelectList(db.Promocion, "prm_id", "prm_nom", producto.prm_id);
+            ViewBag.cat_id = new SelectList(CategoriaBLL.List(), "cat_id", "cat_nom", producto.cat_id);
+            ViewBag.prm_id = new SelectList(PromocionBLL.List(), "prm_id", "prm_nom", producto.prm_id);
             return View(producto);
         }
 
@@ -89,12 +89,11 @@ namespace CrtProyectoDavid.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(producto).State = EntityState.Modified;
-                db.SaveChanges();
+                ProductoBLL.Update(producto);
                 return RedirectToAction("Index");
             }
-            ViewBag.cat_id = new SelectList(db.Categoria, "cat_id", "cat_nom", producto.cat_id);
-            ViewBag.prm_id = new SelectList(db.Promocion, "prm_id", "prm_nom", producto.prm_id);
+            ViewBag.cat_id = new SelectList(CategoriaBLL.List(), "cat_id", "cat_nom", producto.cat_id);
+            ViewBag.prm_id = new SelectList(PromocionBLL.List(), "prm_id", "prm_nom", producto.prm_id);
             return View(producto);
         }
 
@@ -105,7 +104,7 @@ namespace CrtProyectoDavid.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Producto.Find(id);
+            Producto producto = ProductoBLL.Get(id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -118,19 +117,8 @@ namespace CrtProyectoDavid.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Producto producto = db.Producto.Find(id);
-            db.Producto.Remove(producto);
-            db.SaveChanges();
+            ProductoBLL.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

@@ -30,6 +30,7 @@ namespace BEUCrtProyectoDavid
         [Required(ErrorMessage = "El tipo de cliente es requerido"), MaxLength(30)]
         [Display(Name = "Cliente")]
         public string cln_tipo { get; set; }
+        [ScaffoldColumn(false)]
         public Nullable<System.DateTime> cln_dateOfCreated { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

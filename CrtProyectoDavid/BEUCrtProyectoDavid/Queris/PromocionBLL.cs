@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BEUCrtProyectoDavid.Queris
 {
-    class PromocionBLL
+    public class PromocionBLL
     {
         public static void Create(Promocion a)
         {

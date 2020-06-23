@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BEUCrtProyectoDavid.Queris
 {
-    class ClienteBLL
+    public class ClienteBLL
     {
         public static void Create(Cliente a)
         {
@@ -17,6 +19,7 @@ namespace BEUCrtProyectoDavid.Queris
                     try
                     {
                         a.cln_tipo = "Nuevo";
+                        a.cln_dateOfCreated = DateTime.Now;
                         db.Cliente.Add(a);
                         db.SaveChanges();
                         transaction.Commit();
@@ -83,7 +86,13 @@ namespace BEUCrtProyectoDavid.Queris
         public static List<Cliente> List()
         {
             emmcomerseEntities db = new emmcomerseEntities();
-            return db.Cliente.ToList();
+            return db.Cliente.Include(c => c.Usuario).ToList();
+        }
+
+        public static List<Cliente> List(int uso_usu)
+        {
+            emmcomerseEntities db = new emmcomerseEntities();
+            return db.Cliente.Where(x => x.uso_id.Equals(uso_usu)).ToList();
         }
 
         /*public static List<Cliente> ListToNames()
