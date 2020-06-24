@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using BEUCrtProyectoDavid;
 using BEUCrtProyectoDavid.Queris;
@@ -13,8 +15,8 @@ namespace CrtProyectoDavid.Controllers
 {
     public class ProductosController : Controller
     {
-        
 
+        
         // GET: Productos
         public ActionResult Index()
         {
@@ -52,14 +54,26 @@ namespace CrtProyectoDavid.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "prd_id,cat_id,prm_id,prd_nom,prd_img,prd_tal,prd_crt,prd_cnt,prd_dateOfCreated")] Producto producto)
         {
+
+            HttpPostedFileBase fileBase = Request.Files[0];
+            string path= SubirImagen(fileBase);
+            if (path != "")
+            {
+                producto.prd_img = path;
+            }
+            else
+            {
+                producto.prd_img = "default";
+            }
             if (ModelState.IsValid)
             {
                 ProductoBLL.Create(producto);
                 return RedirectToAction("Index");
             }
-
+            //ViewBag.Menssage = file.FileName;
             ViewBag.cat_id = new SelectList(CategoriaBLL.List(), "cat_id", "cat_nom", producto.cat_id);
             ViewBag.prm_id = new SelectList(PromocionBLL.List(), "prm_id", "prm_nom", producto.prm_id);
+            //producto.prd_img = SubirImagen(file);
             return View(producto);
         }
 
@@ -120,5 +134,39 @@ namespace CrtProyectoDavid.Controllers
             ProductoBLL.Delete(id);
             return RedirectToAction("Index");
         }
+
+
+        public ActionResult SeleccionarProducto()
+        {
+            return View(ProductoBLL.List());
+        }
+
+
+        /// <summary>
+        /// ////////////////////////////////////////////
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        private string SubirImagen(HttpPostedFileBase file)
+        {
+            string nombre="";
+            if (file != null && file.ContentLength > 0)
+                try
+                {
+                    ArchivoBLL modelo = new ArchivoBLL();
+                    nombre = DateTime.Now.ToString("yyyyMMddHHmmss") + file.FileName;
+                    string path = Server.MapPath("~/RecursoProducto/")+ nombre;
+                    modelo.SubirArchivo(path,file);
+                    ViewBag.Message = modelo.confirmacion;
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                }
+            return nombre;
+        }
+
+
+
     }
 }

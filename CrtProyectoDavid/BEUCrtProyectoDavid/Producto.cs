@@ -12,6 +12,7 @@ namespace BEUCrtProyectoDavid
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web;
 
     public partial class Producto
     {
@@ -31,7 +32,7 @@ namespace BEUCrtProyectoDavid
         [Display(Name = "Nombre")]
         public string prd_nom { get; set; }
         [DataType(DataType.Text)]
-        [Required(ErrorMessage = "La Imagen es requerida"), MaxLength(100)]
+        //[Required(ErrorMessage = "La Imagen es requerida"), MaxLength(200)]
         [Display(Name = "Imagen")]
         public string prd_img { get; set; }
         [DataType(DataType.Text)]
@@ -46,7 +47,7 @@ namespace BEUCrtProyectoDavid
         [Required(ErrorMessage = "La cantidad es requerida"),]
         [Display(Name = "Cantidad")]
         public Nullable<int> prd_cnt { get; set; }
-        [ScaffoldColumn(false)]
+
         public Nullable<System.DateTime> prd_dateOfCreated { get; set; }
     
         public virtual Categoria Categoria { get; set; }
