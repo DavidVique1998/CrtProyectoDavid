@@ -17,6 +17,8 @@ namespace BEUCrtProyectoDavid.Queris
                 {
                     try
                     {
+                        a.pcr_est = "Pendiente";
+                        a.pcr_dateOfCreated = DateTime.Now;
                         db.ProductoEnCarrito.Add(a);
                         db.SaveChanges();
                         transaction.Commit();

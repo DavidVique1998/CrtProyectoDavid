@@ -8,33 +8,48 @@
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
     @Styles.Render("~/Content/Styles.css")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("PorkDelly", "Index", "Home", new { area = "" }, new { @class = "navbar-brand " })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
-                    <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
-                    <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
-                    <li>@Html.ActionLink("Productos", "Index", "Productos")</li>
-                    <li>@Html.ActionLink("Tienda", "SeleccionarProducto", "Productos")</li>
-                </ul>
-            </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        @Html.ActionLink("PorkDelly", "Index", "Home", new { area = "" }, new { @class = "navbar-brand " })
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    @Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link " })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @class = "nav-link " })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link " })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Usuarios", "Index", "Usuarios", new { area = "" }, new { @class = "nav-link " })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Clientes", "Index", "Clientes", new { area = "" }, new { @class = "nav-link " })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Usuarios", "Index", "Usuarios", new { area = "" }, new { @class = "nav-link " })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Productos", "Index", "Productos", new { area = "" }, new { @class = "nav-link " })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Tienda", "SeleccionarProducto", "Productos", new { area = "" }, new { @class = "nav-link " })
+                </li>
+            </ul>
+            <span class="navbar-text">
+                Compra todo lo que quieras
+            </span>
         </div>
-    </div>
+    </nav>
+
     <div class="container body-content">
         @RenderBody()
         <hr />

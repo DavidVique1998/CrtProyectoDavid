@@ -17,6 +17,7 @@ namespace BEUCrtProyectoDavid.Queris
                 {
                     try
                     {
+                        a.prd_dateOfCreated = DateTime.Now;
                         db.Producto.Add(a);
                         db.SaveChanges();
                         transaction.Commit();

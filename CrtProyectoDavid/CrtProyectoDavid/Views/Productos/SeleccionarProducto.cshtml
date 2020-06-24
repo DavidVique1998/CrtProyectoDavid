@@ -9,13 +9,22 @@
 }
 
 
-<h2>Index</h2>
+<h2>Ropa</h2>
 
 <div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
-        <div class="col">CELDA 1</div>
-        <div class="col">CELDA 2</div>
-        <div class="col">CELDA 3</div>
-        <div class="col">CELDA 4</div>
-    </div>
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="productoTienda">
+                    <img src="@Url.Content("~/Content/Imagenes/")@Html.DisplayFor(modelItem => item.prd_img)" />
+                    <h6>Nombre: @Html.DisplayFor(modelItem => item.prd_nom)</h6>
+                    <h6>Talla: @Html.DisplayFor(modelItem => item.prd_tal)</h6>
+                    
+                    <button><h6>@Html.ActionLink("Agregar al carrito", "Create", "ProductoEnCarritos", new { id = item.prd_id }, new { @class = "agregarBotton " })</h6></button>
+
+                </div>
+            </div>
+         }
+        </div>
 </div>

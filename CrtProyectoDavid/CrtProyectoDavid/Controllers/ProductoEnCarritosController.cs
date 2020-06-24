@@ -118,5 +118,37 @@ namespace CrtProyectoDavid.Controllers
             ProductoEnCarritoBLL.Delete(id);
             return RedirectToAction("Index");
         }
+
+        // GET: ProductoEnCarritos/Details/5
+        public ActionResult AddCarrito(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ViewBag.car_id = new SelectList(CarritoBLL.List(), "car_id", "car_tipo");
+            Producto producto = ProductoBLL.Get(id);
+            ViewBag.producto = producto;
+            if (producto == null)
+            {
+                return HttpNotFound();
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddCarrito([Bind(Include = "pcr_id,car_id,prd_id,pcr_est,prd_cnt,pcr_dateOfCreated")] ProductoEnCarrito productoEnCarrito)
+        {
+            if (ModelState.IsValid)
+            {
+                ProductoEnCarritoBLL.Create(productoEnCarrito);
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.car_id = new SelectList(CarritoBLL.List(), "car_id", "car_tipo", productoEnCarrito.car_id);
+            ViewBag.prd_id = new SelectList(ProductoBLL.List(), "prd_id", "prd_nom", productoEnCarrito.prd_id);
+            return View(productoEnCarrito);
+        }
     }
 }

@@ -155,7 +155,7 @@ namespace CrtProyectoDavid.Controllers
                 {
                     ArchivoBLL modelo = new ArchivoBLL();
                     nombre = DateTime.Now.ToString("yyyyMMddHHmmss") + file.FileName;
-                    string path = Server.MapPath("~/RecursoProducto/")+ nombre;
+                    string path = Server.MapPath("~/Content/Imagenes/")+ nombre;
                     modelo.SubirArchivo(path,file);
                     ViewBag.Message = modelo.confirmacion;
                 }
