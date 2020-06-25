@@ -10,6 +10,23 @@
     <h4>Producto</h4>
     <hr />
     <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categoria.cat_nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria.cat_nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Promocion.prm_nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Promocion.prm_nom)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.prd_nom)
         </dt>
@@ -23,7 +40,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.prd_img)
+            <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4">
+                <div class="col">
+                    <div class="productoTienda">
+                        <img src="@Url.Content("~/Content/Imagenes/")@Html.DisplayFor(model => model.prd_img)" />
+                    </div>
+                    @Html.DisplayFor(model => model.prd_img)
+                </div>
+            </div>
         </dd>
 
         <dt>
@@ -49,26 +73,9 @@
         <dd>
             @Html.DisplayFor(model => model.prd_cnt)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Categoria.cat_nom)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Categoria.cat_nom)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Promocion.prm_nom)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Promocion.prm_nom)
-        </dd>
-
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.prd_id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Productos", "Index")
 </p>

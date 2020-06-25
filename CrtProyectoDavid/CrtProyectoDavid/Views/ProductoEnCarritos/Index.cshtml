@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<BEUCrtProyectoDavid.ProductoEnCarrito>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Carrito";
 }
 
-<h2>Index</h2>
+<h2>Mi carrito</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @*@Html.ActionLink("Create New", "Create")*@
 </p>
 <table class="table">
     <tr>
@@ -47,9 +47,9 @@
             @Html.DisplayFor(modelItem => item.Producto.prd_nom)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.pcr_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.pcr_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.pcr_id })
+            @Html.ActionLink("Editar", "Edit", new { id = item.pcr_id }, htmlAttributes: new { @class = "btn btn-sm btn-warning glyphicon glyphicon-pencil", @title = "Editar" }) |
+            @Html.ActionLink("Ver", "Details", new { id = item.pcr_id }, htmlAttributes: new { @class = "btn btn-sm btn-primary glyphicon glyphicon-search", @title = "Ver" }) |
+            @Html.ActionLink("Borrar", "Delete", new { id = item.pcr_id }, htmlAttributes: new { @class = "btn btn-sm btn-danger glyphicon glyphicon-trash", @title = "Borrar" })
         </td>
     </tr>
 }

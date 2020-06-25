@@ -115,6 +115,7 @@ namespace CrtProyectoDavid.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+
             ProductoEnCarritoBLL.Delete(id);
             return RedirectToAction("Index");
         }
@@ -127,6 +128,8 @@ namespace CrtProyectoDavid.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ViewBag.car_id = new SelectList(CarritoBLL.List(), "car_id", "car_tipo");
+            ViewBag.prd_id = new SelectList(ProductoBLL.List(), "prd_id", "prd_nom");
+
             Producto producto = ProductoBLL.Get(id);
             ViewBag.producto = producto;
             if (producto == null)
@@ -140,15 +143,20 @@ namespace CrtProyectoDavid.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddCarrito([Bind(Include = "pcr_id,car_id,prd_id,pcr_est,prd_cnt,pcr_dateOfCreated")] ProductoEnCarrito productoEnCarrito)
         {
+
             if (ModelState.IsValid)
             {
                 ProductoEnCarritoBLL.Create(productoEnCarrito);
+
                 return RedirectToAction("Index");
             }
-
+            
             ViewBag.car_id = new SelectList(CarritoBLL.List(), "car_id", "car_tipo", productoEnCarrito.car_id);
             ViewBag.prd_id = new SelectList(ProductoBLL.List(), "prd_id", "prd_nom", productoEnCarrito.prd_id);
+            Producto producto = ProductoBLL.Get(productoEnCarrito.prd_id);
+            ViewBag.producto = producto;
             return View(productoEnCarrito);
         }
+
     }
 }

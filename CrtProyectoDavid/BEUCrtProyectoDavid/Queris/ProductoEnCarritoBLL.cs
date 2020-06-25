@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Configuration;
 
 namespace BEUCrtProyectoDavid.Queris
 {
@@ -22,6 +23,7 @@ namespace BEUCrtProyectoDavid.Queris
                         db.ProductoEnCarrito.Add(a);
                         db.SaveChanges();
                         transaction.Commit();
+                        ProductoBLL.Update(a.prd_id, a.prd_cnt);
                     }
                     catch (Exception ex)
                     {
@@ -30,6 +32,13 @@ namespace BEUCrtProyectoDavid.Queris
                     }
                 }
             }
+        }
+
+         public void ActualizarPrducto(int prd_id,int? prd_cnt)
+        {
+            Producto prd = ProductoBLL.Get(prd_id);
+            prd.prd_cnt -=prd_cnt;
+            ProductoBLL.Update(prd);
         }
 
         public static ProductoEnCarrito Get(int? id)
@@ -72,6 +81,7 @@ namespace BEUCrtProyectoDavid.Queris
                         db.Entry(ProductoEnCarrito).State = System.Data.Entity.EntityState.Deleted;
                         db.SaveChanges();
                         transaction.Commit();
+                        ProductoBLL.Update(ProductoEnCarrito.prd_id,(-1*ProductoEnCarrito.prd_cnt));
                     }
                     catch (Exception ex)
                     {

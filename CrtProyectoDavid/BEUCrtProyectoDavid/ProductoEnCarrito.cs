@@ -19,16 +19,18 @@ namespace BEUCrtProyectoDavid
         public int pcr_id { get; set; }
         [ScaffoldColumn(false)]
         public int car_id { get; set; }
-        [ScaffoldColumn(false)]
+
         public int prd_id { get; set; }
         [DataType(DataType.Text)]
-        [Required(ErrorMessage = "El estado es requerido"), MaxLength(50)]
         [Display(Name = "Estado")]
         public string pcr_est { get; set; }
         [RegularExpression("(^[0-9]+$)", ErrorMessage = "Solo se permiten números")]
         [Required(ErrorMessage = "El cantidad es requerida")]
         [Display(Name = "Cantidad")]
         public Nullable<int> prd_cnt { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MMM/yyyy}")]
+        [DataType(DataType.Date)]
+        [Display(Name = "Creado")]
         public Nullable<System.DateTime> pcr_dateOfCreated { get; set; }
         
         public virtual Carrito Carrito { get; set; }

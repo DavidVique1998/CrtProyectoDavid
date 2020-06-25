@@ -59,6 +59,30 @@ namespace BEUCrtProyectoDavid.Queris
             }
         }
 
+        public static void Update(int prd_id,int? cantidad)
+        {
+            using (emmcomerseEntities db = new emmcomerseEntities())
+            {
+                using (var transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        Producto p= db.Producto.Find(prd_id);
+                        p.prd_cnt -= cantidad;
+                        db.Producto.Attach(p);
+                        db.Entry(p).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw ex;
+                    }
+                }
+            }
+        }
+
         public static void Delete(int? id)
         {
             using (emmcomerseEntities db = new emmcomerseEntities())

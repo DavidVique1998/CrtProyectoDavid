@@ -21,7 +21,7 @@
                     <h6>Nombre: @Html.DisplayFor(modelItem => item.prd_nom)</h6>
                     <h6>Talla: @Html.DisplayFor(modelItem => item.prd_tal)</h6>
                     
-                    <button><h6>@Html.ActionLink("Agregar al carrito", "Create", "ProductoEnCarritos", new { id = item.prd_id }, new { @class = "agregarBotton " })</h6></button>
+                    <button><h6>@Html.ActionLink("Agregar al carrito", "AddCarrito", "ProductoEnCarritos", new { id = item.prd_id }, new { @class = "agregarBotton " })</h6></button>
 
                 </div>
             </div>

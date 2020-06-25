@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<BEUCrtProyectoDavid.Usuario>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Usuarios";
 }
 
-<h2>Index</h2>
+<h2>Usuario</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar", "Create")
 </p>
 <table class="table">
     <tr>
@@ -41,9 +41,9 @@
             @Html.DisplayFor(modelItem => item.uso_cor)
         </td>
         <td>
-            @Html.ActionLink(" ", "Edit", new { id=item.uso_id }, htmlAttributes: new { @class = "btn btn-md btn-warning span glyphicon glyphicon-pencil", @title = "Editar" }) |
-            @Html.ActionLink(" ", "Details", new { id=item.uso_id }, htmlAttributes: new { @class = "btn btn-md btn-primary span glyphicon glyphicon-search", @title = "Ver" }) |
-            @Html.ActionLink(" ", "Delete", new { id=item.uso_id }, htmlAttributes: new { @class = "btn btn-md btn-danger span glyphicon glyphicon-trash", @title = "Borrar" })
+            @Html.ActionLink("Editar", "Edit", new { id=item.uso_id }, htmlAttributes: new { @class = "btn btn-md btn-warning span glyphicon glyphicon-pencil", @title = "Editar" }) |
+            @Html.ActionLink("Ver", "Details", new { id=item.uso_id }, htmlAttributes: new { @class = "btn btn-md btn-primary span glyphicon glyphicon-search", @title = "Ver" }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.uso_id }, htmlAttributes: new { @class = "btn btn-md btn-danger span glyphicon glyphicon-trash", @title = "Borrar" })
         </td>
     </tr>
 }

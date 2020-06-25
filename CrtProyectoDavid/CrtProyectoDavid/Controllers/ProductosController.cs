@@ -101,6 +101,16 @@ namespace CrtProyectoDavid.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "prd_id,cat_id,prm_id,prd_nom,prd_img,prd_tal,prd_crt,prd_cnt,prd_dateOfCreated")] Producto producto)
         {
+            if (Request.Files[0]!=null && Request.Files[0].ContentLength> 0)
+            {
+                EliminarArchivo(producto.prd_img);
+                producto.prd_img=SubirImagen(Request.Files[0]);
+            }
+            else
+            {
+                Producto prd = ProductoBLL.Get(producto.prd_id);
+                producto.prd_img = prd.prd_img;
+            }
             if (ModelState.IsValid)
             {
                 ProductoBLL.Update(producto);
@@ -131,6 +141,8 @@ namespace CrtProyectoDavid.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            Producto producto = ProductoBLL.Get(id);
+            EliminarArchivo(producto.prd_img);
             ProductoBLL.Delete(id);
             return RedirectToAction("Index");
         }
@@ -165,8 +177,26 @@ namespace CrtProyectoDavid.Controllers
                 }
             return nombre;
         }
-
-
-
+        private void EliminarArchivo(string prd_img)
+        {
+            string path = Server.MapPath("~/Content/Imagenes/") + prd_img;
+            try
+            {
+                ArchivoBLL modelo = new ArchivoBLL();
+                modelo.EliminarArchivo(path);
+                if (modelo.ComprobarRuta(path))
+                {
+                    ViewBag.Message=modelo.error;
+                }
+                else
+                {
+                    ViewBag.Message=modelo.confirmacion;
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = "ERROR:" + ex.Message.ToString();
+            }
+        }
     }
 }

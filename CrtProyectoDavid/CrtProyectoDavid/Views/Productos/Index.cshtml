@@ -4,17 +4,17 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Productos</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar Producto", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.prd_nom)
         </th>
-        <th>
+        <th >
             @Html.DisplayNameFor(model => model.prd_img)
         </th>
         <th>
@@ -27,10 +27,10 @@
             @Html.DisplayNameFor(model => model.prd_cnt)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Categoria.cat_nom)
+            Categoría
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Promocion.prm_nom)
+            Promoción
         </th>
         <th></th>
     </tr>
@@ -60,9 +60,9 @@
         </td>
         <td>
 
-            @Html.ActionLink("  ", "Edit", new { id = item.prd_id }, htmlAttributes: new { @class = "btn btn-sm btn-warning glyphicon glyphicon-pencil", @title = "Editar" })
-            @Html.ActionLink("  ", "Details", new { id = item.prd_id }, htmlAttributes: new { @class = "btn btn-sm btn-primary glyphicon glyphicon-search", @title = "Ver" })
-            @Html.ActionLink("  ", "Delete", new { id = item.prd_id }, htmlAttributes: new { @class = "btn btn-sm btn-danger glyphicon glyphicon-trash", @title = "Borrar" })
+            @Html.ActionLink("Editar", "Edit", new { id = item.prd_id }, htmlAttributes: new { @class = "btn btn-sm btn-warning glyphicon glyphicon-pencil", @title = "Editar" })<br> 
+            @Html.ActionLink("Ver", "Details", new { id = item.prd_id }, htmlAttributes: new { @class = "btn btn-sm btn-primary glyphicon glyphicon-search", @title = "Ver" }) <br>
+            @Html.ActionLink("Borrar", "Delete", new { id = item.prd_id }, htmlAttributes: new { @class = "btn btn-sm btn-danger glyphicon glyphicon-trash", @title = "Borrar" })
         </td>
     </tr>
 }

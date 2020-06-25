@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,8 +27,30 @@ namespace BEUCrtProyectoDavid.Queris
             }
         }
 
+        public void EliminarArchivo(string ruta)
+        {
+            try
+            {
+                File.Delete(ruta);
+                this.confirmacion = "Imagen Eliminada";
+            }
+            catch (Exception ex)
+            {
+                this.error = ex;
+                throw;
+            }
+        }
 
-
-
-     }
+        public bool ComprobarRuta(string ruta)
+        {
+            if (File.Exists(ruta))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
 }

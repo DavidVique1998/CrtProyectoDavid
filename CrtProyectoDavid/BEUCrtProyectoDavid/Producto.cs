@@ -47,7 +47,8 @@ namespace BEUCrtProyectoDavid
         [Required(ErrorMessage = "La cantidad es requerida"),]
         [Display(Name = "Cantidad")]
         public Nullable<int> prd_cnt { get; set; }
-
+        [Display(Name = "Creado")]
+        [DisplayFormat(DataFormatString = "{0:dd/MMM/yyyy}")]
         public Nullable<System.DateTime> prd_dateOfCreated { get; set; }
     
         public virtual Categoria Categoria { get; set; }

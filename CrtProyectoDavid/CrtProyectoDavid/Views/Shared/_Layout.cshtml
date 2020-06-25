@@ -13,20 +13,20 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        @Html.ActionLink("PorkDelly", "Index", "Home", new { area = "" }, new { @class = "navbar-brand " })
+        @Html.ActionLink("PortBelly", "SeleccionarProducto", "Productos", new { area = "" }, new { @class = "navbar-brand " })
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    @Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link " })
+                    @Html.ActionLink("Tienda", "SeleccionarProducto", "Productos", new { area = "" }, new { @class = "nav-link " })
                 </li>
                 <li class="nav-item">
-                    @Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @class = "nav-link " })
+                    @Html.ActionLink("Productos", "Index", "Productos", new { area = "" }, new { @class = "nav-link " })
                 </li>
                 <li class="nav-item">
-                    @Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link " })
+                    @Html.ActionLink("Mi Carrito", "Index", "ProductoEnCarritos", new { area = "" }, new { @class = "nav-link " })
                 </li>
                 <li class="nav-item">
                     @Html.ActionLink("Usuarios", "Index", "Usuarios", new { area = "" }, new { @class = "nav-link " })
@@ -34,15 +34,19 @@
                 <li class="nav-item">
                     @Html.ActionLink("Clientes", "Index", "Clientes", new { area = "" }, new { @class = "nav-link " })
                 </li>
+
                 <li class="nav-item">
-                    @Html.ActionLink("Usuarios", "Index", "Usuarios", new { area = "" }, new { @class = "nav-link " })
+                    @Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @class = "nav-link " })
                 </li>
                 <li class="nav-item">
-                    @Html.ActionLink("Productos", "Index", "Productos", new { area = "" }, new { @class = "nav-link " })
+                    @Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link " })
                 </li>
+
                 <li class="nav-item">
-                    @Html.ActionLink("Tienda", "SeleccionarProducto", "Productos", new { area = "" }, new { @class = "nav-link " })
+                    @Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link " })
                 </li>
+
+
             </ul>
             <span class="navbar-text">
                 Compra todo lo que quieras
