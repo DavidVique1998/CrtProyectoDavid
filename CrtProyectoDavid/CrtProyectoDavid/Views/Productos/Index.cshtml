@@ -9,12 +9,19 @@
 <p>
     @Html.ActionLink("Agregar Producto", "Create")
 </p>
+
+<script type="text/javascript">
+    function ocultar() {
+        document.getElementsByClassName(".opciones").show();
+    }
+
+</script>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.prd_nom)
         </th>
-        <th >
+        <th>
             @Html.DisplayNameFor(model => model.prd_img)
         </th>
         <th>
@@ -35,36 +42,39 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.prd_nom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.prd_img)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.prd_tal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.prd_crt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.prd_cnt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categoria.cat_nom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Promocion.prm_nom)
-        </td>
-        <td>
-
-            @Html.ActionLink("Editar", "Edit", new { id = item.prd_id }, htmlAttributes: new { @class = "btn btn-sm btn-warning glyphicon glyphicon-pencil", @title = "Editar" })<br> 
-            @Html.ActionLink("Ver", "Details", new { id = item.prd_id }, htmlAttributes: new { @class = "btn btn-sm btn-primary glyphicon glyphicon-search", @title = "Ver" }) <br>
-            @Html.ActionLink("Borrar", "Delete", new { id = item.prd_id }, htmlAttributes: new { @class = "btn btn-sm btn-danger glyphicon glyphicon-trash", @title = "Borrar" })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.prd_nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prd_img)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prd_tal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prd_crt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prd_cnt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria.cat_nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Promocion.prm_nom)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.prd_id }, htmlAttributes: new { @class = "btn btn-sm btn-warning glyphicon glyphicon-pencil", @title = "Editar" })<br>
+                @Html.ActionLink("Ver", "Details", new { id = item.prd_id }, htmlAttributes: new { @class = "btn btn-sm btn-primary glyphicon glyphicon-search", @title = "Ver" }) <br>
+                @Html.ActionLink("Borrar", "Delete", new { id = item.prd_id }, htmlAttributes: new { @class = "btn btn-sm btn-danger glyphicon glyphicon-trash", @title = "Borrar" })
+            </td>
+        </tr>
+    }
 
 </table>
+
+
+

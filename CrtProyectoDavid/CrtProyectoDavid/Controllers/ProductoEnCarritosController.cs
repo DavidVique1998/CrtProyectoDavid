@@ -69,12 +69,14 @@ namespace CrtProyectoDavid.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ProductoEnCarrito productoEnCarrito = ProductoEnCarritoBLL.Get(id);
+            Producto producto = ProductoBLL.Get(productoEnCarrito.prd_id);
             if (productoEnCarrito == null)
             {
                 return HttpNotFound();
             }
             ViewBag.car_id = new SelectList(CarritoBLL.List(), "car_id", "car_tipo", productoEnCarrito.car_id);
             ViewBag.prd_id = new SelectList(ProductoBLL.List(), "prd_id", "prd_nom", productoEnCarrito.prd_id);
+            ViewBag.cantidad = producto.prd_cnt +productoEnCarrito.prd_cnt;
             return View(productoEnCarrito);
         }
 
